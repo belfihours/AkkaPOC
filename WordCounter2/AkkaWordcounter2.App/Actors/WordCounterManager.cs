@@ -11,7 +11,7 @@ public sealed class WordCounterManager : ReceiveActor
     {
         Receive<IWithDocumentId>(s =>
         {
-            string childName = $"word-counter-{HttpUtility.UrlEncode(s.DocumentId.ToString())}";
+            var childName = $"word-counter-{HttpUtility.UrlEncode(s.DocumentId.ToString())}";
             var child = Context.Child(childName);
             if (child.IsNobody())
             {
