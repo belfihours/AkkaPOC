@@ -12,10 +12,11 @@ public static class TextExtractor
     public static IEnumerable<string> ExtractText(HtmlDocument document)
     {
         var root = document.DocumentNode;
-        foreach (var node in root.Descendants()
-                     .Where(n=>n.NodeType == HtmlNodeType.Text
-                     && n.ParentNode.Name!="script"
-                     &&  n.ParentNode.Name!="style"))
+        var nodes = root.Descendants()
+            .Where(n => n.NodeType == HtmlNodeType.Text
+                && n.ParentNode.Name != "script"
+                && n.ParentNode.Name != "style");
+        foreach (var node in nodes)
         {
             var text = node.InnerText.Trim();
             if(!string.IsNullOrWhiteSpace(text))

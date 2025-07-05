@@ -50,7 +50,6 @@ public sealed class DocumentWordCounter : UntypedActor
                 foreach (var subscriber in _subscribers)
                 {
                     subscriber.Tell(output);
-                    subscriber.Tell("Hello tester!");
                 }
                 _subscribers.Clear();
                 Become(Complete);
